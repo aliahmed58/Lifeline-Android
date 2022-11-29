@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/signupLayout"
+    tools:context=".activities.verification.SignUpActivity">
+
+    <EditText
+        android:id="@+id/nameInputText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="372dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/cellphoneInputText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Cellphone"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInputText"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <RadioGroup
+        android:id="@+id/signUpTypeRadioGroup"
+        android:layout_width="201dp"
+
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/nameInputText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.932">
+
+        <RadioButton
+            android:id="@+id/userRadioSelect"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="User" />
+
+        <RadioButton
+            android:id="@+id/driverRadioSelect"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Driver" />
+
+        <RadioButton
+            android:id="@+id/hospitalRadioSelect"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Hospital" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="205dp"
+        android:layout_height="48dp"
+        android:text="Sign up"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cellphoneInputText"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:text="LifeLine - Sign up"
+        app:layout_constraintBottom_toTopOf="@+id/signUpTypeRadioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
