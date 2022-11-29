@@ -1,37 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.MainActivity">
 
-    <Button
-        android:id="@+id/signupHomePage"
-        android:layout_width="192dp"
-        android:layout_height="62dp"
-        android:text="Signup"
-        android:textAllCaps="false"
-        android:background="@color/black"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/loginHomePage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+    <!--Welcome To, Text -->
+    <TextView
+        android:id="@+id/LoginScreen_welcomeTo"
+        android:layout_width="300dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
 
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+
+        android:gravity="top"
+        android:text="@string/welcome_to"
+        android:textAppearance="@style/largeText" />
+
+    <!-- LifeLine Text -->
+    <TextView
+        android:id="@+id/LoginScreen_lifelineText"
+        android:layout_width="300dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="90dp"
+
+        android:gravity="top"
+        android:text="@string/lifeline"
+        android:textAppearance="@style/largeText" />
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/LoginScreen_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="177dp"
+
+        android:background="@drawable/logo" />
+
+    <!-- Login button -->
     <Button
-        android:id="@+id/loginHomePage"
-        android:layout_width="192dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="216dp"
+        android:id="@+id/homeSignupBtn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="577dp"
+        android:background="@color/blue_200"
         android:text="Login"
-        android:background="@color/black"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAppearance="@style/smallText" />
+
+    <!-- SignUP button -->
+    <Button
+        android:id="@+id/homeLoginBtn"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="628dp"
+
+        android:background="@color/blue_200"
+        android:text="Signup"
+
+        android:textAppearance="@style/smallText" />
+
+</RelativeLayout>

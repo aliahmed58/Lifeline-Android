@@ -13,6 +13,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.main.frontend.R;
 import com.main.frontend.constants.Constants;
 import com.main.frontend.network.VolleySingletonQueue;
@@ -30,8 +31,7 @@ public class LoginPage extends AppCompatActivity {
     private Button signupBtn;
     private EditText phoneEditText;
 
-    // Volley request queue
-    private RequestQueue reqQueue;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,61 +42,17 @@ public class LoginPage extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signupBtn = findViewById(R.id.goToSignup);
         phoneEditText = findViewById(R.id.loginPhoneText);
-        reqQueue = VolleySingletonQueue.getInstance(this).getRequestQueue();
+        db = FirebaseFirestore.getInstance();
 
         // handle button events
         signupClicked();
         loginClicked();
-
-    }
-
-    private void sendToBackend() {
-        try {
-            String URL = Constants.URL + "checkAccount";
-            JSONObject body = new JSONObject();
-            body.put("phone", phoneEditText.getText().toString());
-
-            JsonObjectRequest req = new JsonObjectRequest(
-                    Request.Method.POST, URL, body, response -> {
-                try {
-                    String result = response.getString("status");
-                    // if account not found
-                    if (result.equals("noAccount")) {
-                        Toast.makeText(LoginPage.this, "Please Signup", Toast.LENGTH_SHORT).show();
-                        Intent loginPage = new Intent(getBaseContext(), SignUpActivity.class);
-                        startActivity(loginPage);
-                        finish();
-                    }
-                    else if (result.equals("success")) {
-                        proceedLogin();
-                    }
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            },
-                    error -> {
-
-                    }){
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json; charset=utf-8");
-                    return headers;
-                }
-            };
-
-            reqQueue.add(req);
-        }
-        catch (JSONException e ) {
-            e.printStackTrace();
-        }
     }
 
     private void signupClicked() {
         signupBtn.setOnClickListener(view -> {
             Intent x = new Intent(getBaseContext(), SignUpActivity.class);
             startActivity(x);
-            finish();
         });
     }
 
@@ -111,8 +67,23 @@ public class LoginPage extends AppCompatActivity {
     // login button clicked
     private void loginClicked() {
         loginBtn.setOnClickListener(view -> {
-            sendToBackend();
+            checkAccount();
         });
     }
 
+    private void checkAccount() {
+        db.collection("users")
+                .whereEqualTo("phone", phoneEditText.getText().toString())
+                .get()
+                .addOnCompleteListener(task -> {
+                   if (task.isSuccessful()) {
+                       if (task.getResult().size() != 0) {
+                           proceedLogin();
+                       }
+                       else {
+                           Toast.makeText(this, "Account doesn't exist, please signup", Toast.LENGTH_SHORT).show();
+                       }
+                   }
+                });
+    }
 }

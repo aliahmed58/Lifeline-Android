@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -28,12 +29,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.main.frontend.R;
 import com.main.frontend.activities.driver.DriverHomepage;
 import com.main.frontend.activities.hospital.HospitalHomepage;
 import com.main.frontend.activities.user.UserHomepage;
 import com.main.frontend.auth.PhoneAuthenticator;
 import com.main.frontend.constants.Constants;
+import com.main.frontend.entity.User;
 import com.main.frontend.network.VolleySingletonQueue;
 
 import org.json.JSONException;
@@ -45,8 +49,10 @@ import java.util.Objects;
 
 public class SignUpActivity2 extends AppCompatActivity {
 
+
     // firebase auth objects
     private FirebaseAuth auth;
+    private FirebaseFirestore db;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callBacks;
     // TODO:: CHECK RESEND TOKEN
     private PhoneAuthProvider.ForceResendingToken resendToken;
@@ -66,6 +72,8 @@ public class SignUpActivity2 extends AppCompatActivity {
     private String userType;
     private String smsCode;
 
+    private String jwt;
+
     private static final String TAG = "SignUpVerify";
 
     @Override
@@ -74,6 +82,7 @@ public class SignUpActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up2);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         reqQueue = VolleySingletonQueue.getInstance(this.getApplicationContext()).getRequestQueue();
 
         signUp = (Button) findViewById(R.id.proceedSignUp);
@@ -156,7 +165,7 @@ public class SignUpActivity2 extends AppCompatActivity {
                         user = auth.getCurrentUser();
                         if (user != null) {
                             Toast.makeText(SignUpActivity2.this, user.getPhoneNumber(), Toast.LENGTH_LONG).show();
-                            sendJWTtoServer();
+                            getJwt();
                         }
                         else {
                             Toast.makeText(SignUpActivity2.this, "Auth failed, try again", Toast.LENGTH_LONG).show();
@@ -171,15 +180,15 @@ public class SignUpActivity2 extends AppCompatActivity {
         });
     }
 
-    private void sendJWTtoServer() {
+    private void getJwt() {
         if (user != null) {
             user.getIdToken(false)
                     .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
                         public void onComplete(@NonNull Task<GetTokenResult> task) {
                             if (task.isSuccessful()) {
-                                String JWT = task.getResult().getToken();
-                                Log.d("JWT", JWT);
-                                sendUserToBackend(JWT);
+                                jwt = task.getResult().getToken();
+                                Log.d("JWT", jwt);
+                                sendUserToBackend(task.getResult().getToken());
                             } else {
                                 Log.w(TAG, "noJWT", task.getException());
                                 // Todo: handle error if no token found
@@ -206,18 +215,21 @@ public class SignUpActivity2 extends AppCompatActivity {
     // show user UI
     private void showUserUI() {
         Intent intent = new Intent(this, UserHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
     // show driver UI
     private void showDriverUI() {
         Intent intent = new Intent(this, DriverHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
     // show hospital UI
     private void showHospitalUI() {
         Intent intent = new Intent(this, HospitalHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
@@ -232,28 +244,22 @@ public class SignUpActivity2 extends AppCompatActivity {
             jsonBody.put("name", name);
             jsonBody.put("userType", userType);
             jsonBody.put("jwt", JWT);
+            jsonBody.put("phoneNumber", cellphone);
 
             JsonObjectRequest signupReq = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
                 public void onResponse(JSONObject response) {
                     try {
                         String result = response.getString("status");
 
-                        // different actions from backend
-                        if (result.equals("authFailed")) {
-                            Toast.makeText(SignUpActivity2.this, "auth failed", Toast.LENGTH_SHORT).show();
-                        }
-                        // show login page since account exists
-                        else if (result.equals("accountExits")) {
-                            Toast.makeText(SignUpActivity2.this, "Please login", Toast.LENGTH_SHORT).show();
-                            Intent loginPage = new Intent(getBaseContext(), LoginPage.class);
-                            startActivity(loginPage);
-                            finish();
-                        }
                         // refresh token to get claims and change UI
-                        else if (result.equals("success")) {
+                        if (result.equals("success")) {
+                            User user = new User(name, cellphone, userType);
+                            db.collection("users")
+                                    .document(cellphone)
+                                    .set(user);
+                            ;
                             updateUI();
                         }
-
                         Log.d(TAG, result);
 
                     } catch (JSONException e) {

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Frontend</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="lifeline">LifeLine</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

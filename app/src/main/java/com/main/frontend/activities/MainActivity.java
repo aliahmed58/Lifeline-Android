@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.main.frontend.R;
+import com.main.frontend.activities.verification.LoginPage;
 import com.main.frontend.activities.verification.SignUpActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,13 +18,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button signUpIntentButton = (Button) findViewById(R.id.signupHomePage);
-        Button loginIntentButton = (Button) findViewById(R.id.loginHomePage);
+        Button signUpIntentButton = (Button) findViewById(R.id.homeSignupBtn);
+        Button loginIntentButton = (Button) findViewById(R.id.homeLoginBtn);
 
-        signUpIntentButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), SignUpActivity.class));
-            }
+        signUpIntentButton.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, LoginPage.class);
+            startActivity(i);
+        });
+
+        loginIntentButton.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(i);
         });
     }
 }

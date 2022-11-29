@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.main.frontend.R;
 import com.main.frontend.activities.driver.DriverHomepage;
 import com.main.frontend.activities.hospital.HospitalHomepage;
@@ -53,6 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     // firebase
     private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         reqQueue = VolleySingletonQueue.getInstance(this).getRequestQueue();
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         // show UI if user already logged in
         // to be implemented in login page
         //updateUI();
@@ -77,45 +83,29 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void checkAccount() {
-        try {
-            String URL = Constants.URL + "checkAccount";
-            JSONObject body = new JSONObject();
-            body.put("phone", cellphoneInput.getText().toString());
 
-            JsonObjectRequest req = new JsonObjectRequest(
-                    Request.Method.POST, URL, body, response -> {
-                try {
-                    String result = response.getString("status");
-                    // if account not found
-                    if (result.equals("noAccount")) {
-                        proceedSignup();
+        cellphone = cellphoneInput.getText().toString();
+
+        db.collection("users")
+                .whereEqualTo("phone", cellphone)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().size() == 0) {
+                            proceedSignup();
+                        }
+                        else {
+                            Toast.makeText(this, "User exists, please login", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getBaseContext(), LoginPage.class);
+                            startActivity(i);
+                            finish();
+                        }
                     }
-                    else if (result.equals("success")) {
-                        Toast.makeText(SignUpActivity.this, "Account exists", Toast.LENGTH_SHORT).show();
-                        Intent loginPage = new Intent(getBaseContext(), LoginPage.class);
-                        startActivity(loginPage);
-                        finish();
+                    else {
+                        Log.w(TAG, "error fetching data: ", task.getException());
                     }
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            },
-                    error -> {
+                });
 
-                    }){
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json; charset=utf-8");
-                    return headers;
-                }
-            };
-
-            reqQueue.add(req);
-        }
-        catch (JSONException e ) {
-            e.printStackTrace();
-        }
     }
 
     private void updateUI() {
