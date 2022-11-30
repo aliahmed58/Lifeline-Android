@@ -1,0 +1,91 @@
+package com.main.frontend.activities.user;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.badge.BadgeUtils;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.main.frontend.R;
+import com.main.frontend.activities.MainActivity;
+import com.main.frontend.entity.User;
+
+import java.util.Objects;
+
+public class UserHomeFragment extends Fragment {
+
+    private TextView welcomeMsg;
+    private Button callAmbulanceBtn;
+    private Button bookHospitalBedBtn;
+
+    private FirebaseFirestore db;
+    private User user;
+
+    public UserHomeFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_user_home, container, false);
+
+        db = FirebaseFirestore.getInstance();
+        welcomeMsg = view.findViewById(R.id.welcomeMsgUser);
+        callAmbulanceBtn = view.findViewById(R.id.callAmbulanceBtn);
+        bookHospitalBedBtn = view.findViewById(R.id.bookHospitalBedBtn);
+
+        checkAuth(view);
+        ambulanceBtnListener();
+
+        return view;
+    }
+
+    private void ambulanceBtnListener() {
+        callAmbulanceBtn.setOnClickListener(view ->{
+            Intent i = new Intent(view.getContext(), CallAmbulance.class);
+            startActivity(i);
+        });
+    }
+
+    private void hospitalBedListener() {
+
+    }
+
+    private void checkAuth(View view) {
+        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fbUser == null) {
+            Intent i = new Intent(view.getContext(), MainActivity.class);
+            startActivity(i);
+        }
+        else {
+           if (user == null) {
+               DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(fbUser.getPhoneNumber()));
+               docRef.get().addOnSuccessListener(documentSnapshot -> {
+                   user = documentSnapshot.toObject(User.class);
+                   if (user != null) {
+                       welcomeMsg.setText("Welcome, " + user.getName());
+                   }
+               });
+           }
+           else {
+               welcomeMsg.setText("Welcome, " + user.getName());
+           }
+        }
+    }
+
+}
