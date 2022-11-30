@@ -13,12 +13,14 @@
         android:theme="@style/Theme.Frontend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.user.CallAmbulance"
+            android:exported="false" />
+        <activity
             android:name=".activities.verification.LoginPage2"
             android:exported="false" />
         <activity
             android:name=".activities.verification.LoginPage"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activities.hospital.HospitalHomepage"
             android:exported="false" />
@@ -33,12 +35,10 @@
             android:exported="false" />
         <activity
             android:name=".activities.verification.SignUpActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activities.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

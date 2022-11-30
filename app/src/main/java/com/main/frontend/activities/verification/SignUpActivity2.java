@@ -162,14 +162,12 @@ public class SignUpActivity2 extends AppCompatActivity {
                         // authenticate phone
                         phoneAuthenticator.signInWithPhone(credential);
                         // get verified user
-                        user = auth.getCurrentUser();
-                        if (user != null) {
-                            Toast.makeText(SignUpActivity2.this, user.getPhoneNumber(), Toast.LENGTH_LONG).show();
-                            getJwt();
-                        }
-                        else {
-                            Toast.makeText(SignUpActivity2.this, "Auth failed, try again", Toast.LENGTH_LONG).show();
-                        }
+                        auth.addAuthStateListener(firebaseAuth -> {
+                            if (firebaseAuth.getCurrentUser() != null) {
+                                user = firebaseAuth.getCurrentUser();
+                                sendUserToBackend();
+                            }
+                        });
                     }
                 }
                 // display prompt if sms code is not of length 6
@@ -180,36 +178,13 @@ public class SignUpActivity2 extends AppCompatActivity {
         });
     }
 
-    private void getJwt() {
-        if (user != null) {
-            user.getIdToken(false)
-                    .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                        public void onComplete(@NonNull Task<GetTokenResult> task) {
-                            if (task.isSuccessful()) {
-                                jwt = task.getResult().getToken();
-                                Log.d("JWT", jwt);
-                                sendUserToBackend(task.getResult().getToken());
-                            } else {
-                                Log.w(TAG, "noJWT", task.getException());
-                                // Todo: handle error if no token found
-                            }
-                        }
-                    });
-        }
-    }
 
-    private void updateUI() {
-        if (user != null) {
-            user.getIdToken(true)
-                .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                    public void onSuccess(GetTokenResult getTokenResult) {
-                        String userType = Objects.requireNonNull(getTokenResult.getClaims().get("userType")).toString();
-                        if (userType.equals("driver")) showDriverUI();
-                        if (userType.equals("user")) showUserUI();
-                        if (userType.equals("hospital")) showHospitalUI();
-                    }
-                });
-        }
+    private void updateUI(String userType) {
+        if (userType.equals("driver"))
+            showDriverUI();
+        if (userType.equals("user")) showUserUI();
+        if (userType.equals("hospital"))
+            showHospitalUI();
     }
 
     // show user UI
@@ -219,6 +194,7 @@ public class SignUpActivity2 extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     // show driver UI
     private void showDriverUI() {
         Intent intent = new Intent(this, DriverHomepage.class);
@@ -226,6 +202,7 @@ public class SignUpActivity2 extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     // show hospital UI
     private void showHospitalUI() {
         Intent intent = new Intent(this, HospitalHomepage.class);
@@ -236,52 +213,15 @@ public class SignUpActivity2 extends AppCompatActivity {
 
 
     // TODO: clean up code | handle errors properly | empty user type errors
-    private void sendUserToBackend(String JWT) {
-        try {
-            String URL = Constants.URL + "signup";
-            JSONObject jsonBody = new JSONObject();
-
-            jsonBody.put("name", name);
-            jsonBody.put("userType", userType);
-            jsonBody.put("jwt", JWT);
-            jsonBody.put("phoneNumber", cellphone);
-
-            JsonObjectRequest signupReq = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
-                public void onResponse(JSONObject response) {
-                    try {
-                        String result = response.getString("status");
-
-                        // refresh token to get claims and change UI
-                        if (result.equals("success")) {
-                            User user = new User(name, cellphone, userType);
-                            db.collection("users")
-                                    .document(cellphone)
-                                    .set(user);
-                            ;
-                            updateUI();
-                        }
-                        Log.d(TAG, result);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                public void onErrorResponse(VolleyError error) {
-                    Log.d(TAG, "Error: " + error.getMessage());
-                }
-            }) {
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json; charset=utf-8");
-                    return headers;
-                }
-            };
-
-            reqQueue.add(signupReq);
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private void sendUserToBackend() {
+        User fbUser = new User(name, cellphone, userType);
+        if (user != null) {
+            db.collection("users")
+                    .document(cellphone)
+                    .set(fbUser)
+                    .addOnSuccessListener(unused -> {
+                        updateUI(fbUser.getUserType());
+                    });
         }
-
     }
 }

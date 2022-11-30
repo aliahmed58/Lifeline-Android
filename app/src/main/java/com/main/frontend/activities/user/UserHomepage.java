@@ -2,80 +2,51 @@ package com.main.frontend.activities.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.main.frontend.R;
-import com.main.frontend.activities.MainActivity;
-import com.main.frontend.entity.User;
-import com.main.frontend.network.VolleySingletonQueue;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import com.main.frontend.activities.common.ProfileFragment;
 
 public class UserHomepage extends AppCompatActivity {
 
     private static final String TAG = "UserHomepage";
+    BottomNavigationView navbar;
 
-    // Entities
-    private User user;
-
-    // UI Elements
-    private TextView userDisplayText;
-
-    // firebase variables
-    private FirebaseFirestore db;
-    private FirebaseAuth auth;
+    UserHomeFragment userFragment = new UserHomeFragment();
+    ProfileFragment profileFragment = new ProfileFragment();
+    UserHistoryFragment historyFragment = new UserHistoryFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
 
-        userDisplayText = findViewById(R.id.userDisplayName);
-
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
-        checkAuth();
-
+        navbar = findViewById(R.id.userNavbar);
+        navbarListener();
+        navbar.setSelectedItemId(R.id.userHome);
     }
 
-    private void checkAuth() {
-        FirebaseUser fbUser = auth.getCurrentUser();
-        if (fbUser == null) {
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
-            finish();
-        }
-        else {
-            Toast.makeText(this, fbUser.getPhoneNumber(), Toast.LENGTH_SHORT).show();
-            DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(fbUser.getPhoneNumber()));
-            docRef.get().addOnSuccessListener(documentSnapshot -> {
-                user = documentSnapshot.toObject(User.class);
-                userDisplayText.setText("Welcome, " + user.getName());
-            });
+    private void navbarListener() {
+        navbar.setOnNavigationItemSelectedListener(item -> {
 
-        }
+            if (item.getItemId() == R.id.userHome) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, userFragment).commit();
+                return true;
+            }
+            else if (item.getItemId() == R.id.userProfile) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, profileFragment).commit();
+                return true;
+            }
+            else if (item.getItemId() == R.id.userHistory) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, historyFragment).commit();
+                return true;
+            }
+            else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, userFragment).commit();
+                return true;
+            }
+        });
     }
-
 
 }

@@ -23,15 +23,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.main.frontend.R;
 import com.main.frontend.activities.driver.DriverHomepage;
 import com.main.frontend.activities.hospital.HospitalHomepage;
 import com.main.frontend.activities.user.UserHomepage;
 import com.main.frontend.auth.PhoneAuthenticator;
 import com.main.frontend.constants.Constants;
+import com.main.frontend.entity.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +53,7 @@ public class LoginPage2 extends AppCompatActivity {
     private String mVerificationId;
     private PhoneAuthenticator phoneAuthenticator;
     private FirebaseUser user;
+    private FirebaseFirestore db;
 
     private String smsCode;
     private String phone;
@@ -60,6 +65,7 @@ public class LoginPage2 extends AppCompatActivity {
         setContentView(R.layout.activity_login_page2);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         verifyOtpBtn = findViewById(R.id.verifyLogin);
         otpEditText = findViewById(R.id.loginOtpEditText);
@@ -68,7 +74,7 @@ public class LoginPage2 extends AppCompatActivity {
         setPhoneNumberFromBundle();
 
         phoneAuthenticator = new PhoneAuthenticator(auth, this, callBacks);
-        phoneAuthenticator.startPhoneAuth("+16505553436");
+        phoneAuthenticator.startPhoneAuth(phone);
         // restore verification id if lost in activity destruction
         if (mVerificationId == null && savedInstanceState != null) onRestoreInstanceState(savedInstanceState);
 
@@ -94,48 +100,50 @@ public class LoginPage2 extends AppCompatActivity {
                 if (mVerificationId != null) {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, smsCode);
                     phoneAuthenticator.signInWithPhone(credential);
-                    user = auth.getCurrentUser();
-                    if (user != null) {
-                        Log.d(TAG, "Success finding user");
-                        updateUI();
-                    }
-                    else {
-                        Toast.makeText(this, "Error signing in", Toast.LENGTH_SHORT).show();
 
-                    }
-
+                    auth.addAuthStateListener(firebaseAuth -> {
+                        if (firebaseAuth.getCurrentUser() != null) {
+                            user = firebaseAuth.getCurrentUser();
+                            updateUI();
+                        }
+                    });
                 }
             }
         });
     }
     private void updateUI() {
         if (user != null) {
-            user.getIdToken(true)
-                    .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                        public void onSuccess(GetTokenResult getTokenResult) {
-                            String userType = Objects.requireNonNull(getTokenResult.getClaims().get("userType")).toString();
-                            if (userType.equals("driver")) showDriverUI();
-                            if (userType.equals("user")) showUserUI();
-                            if (userType.equals("hospital")) showHospitalUI();
-                        }
-                    });
+            DocumentReference docRef = db.collection("users").document(phone);
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                User dbUser = documentSnapshot.toObject(User.class);
+                if (dbUser != null) {
+
+                    String userType = dbUser.getUserType();
+                    if (userType.equals("driver")) showDriverUI();
+                    if (userType.equals("user")) showUserUI();
+                    if (userType.equals("hospital")) showHospitalUI();
+                }
+            });
         }
     }
     // show user UI
     private void showUserUI() {
         Intent intent = new Intent(this, UserHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
     // show driver UI
     private void showDriverUI() {
         Intent intent = new Intent(this, DriverHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
     // show hospital UI
     private void showHospitalUI() {
         Intent intent = new Intent(this, HospitalHomepage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }

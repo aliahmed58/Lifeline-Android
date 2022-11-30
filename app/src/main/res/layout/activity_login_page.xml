@@ -1,45 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.verification.LoginPage">
+
+    <!-- Lifeline text-->
+    <TextView
+        android:id="@+id/LifelineLoginPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+
+        android:gravity="top"
+        android:text="@string/lifeline"
+        android:textAppearance="@style/largeText" />
+
+    <!-- Login text-->
+    <TextView
+        android:id="@+id/LoginLoginPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="90dp"
+
+        android:gravity="top"
+        android:text="Login"
+        android:textAppearance="@style/mediumText" />
 
     <EditText
         android:id="@+id/loginPhoneText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="376dp"
-        android:ems="10"
+        android:layout_width="300dp"
+        android:layout_height="41dp"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
         android:autofillHints="phone"
+        android:background="@drawable/rect"
+        android:ems="10"
+        android:hint=" Cellphone"
         android:inputType="phone"
-        android:hint="Enter phone number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/blue_200"
+        android:textColorHint="@color/blue_200" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPhoneText" />
+        android:layout_width="300dp"
+        android:layout_height="40dp"
 
-    <Button
-        android:id="@+id/goToSignup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:background="@color/blue_200"
+        android:text="Send OTP"
+        android:textAppearance="@style/buttonText" />
+
+    <!-- New user text -->
+    <TextView
+        android:id="@+id/newUserTextView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="570dp"
+        android:text="New user?"
+        android:textAppearance="@style/smallText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goToSignup"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+
+        android:background="@color/blue_200"
         android:text="Signup"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn"
-        app:layout_constraintVertical_bias="0.396" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAppearance="@style/buttonText" />
+</RelativeLayout>

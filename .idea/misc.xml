@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/drawable/rect.xml" value="0.137" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/font/raleway_thin.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_call_ambulance.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_driver_homepage.xml" value="0.1265625" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_enter_otp_signup.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_hospital_homepage.xml" value="0.1265625" />
@@ -15,6 +17,11 @@
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_sign_up2.xml" value="0.264" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_user_homepage.xml" value="0.2" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/bottom_navbar.xml" value="0.275" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/fragment_user_history.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/fragment_user_home.xml" value="0.275" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/fragment_user_profile.xml" value="0.275" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.137" />
       </map>
     </option>

@@ -52,13 +52,13 @@
         android:background="@drawable/logo" />
 
     <!-- Login button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/homeSignupBtn"
         android:layout_width="300dp"
         android:layout_height="40dp"
 
         android:layout_alignParentTop="true"
-
+        android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_marginTop="577dp"
         android:background="@color/blue_200"
@@ -66,19 +66,16 @@
         android:textAppearance="@style/smallText" />
 
     <!-- SignUP button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/homeLoginBtn"
         android:layout_width="300dp"
         android:layout_height="40dp"
-
+        android:textColor="@color/white"
         android:layout_alignParentTop="true"
-
         android:layout_centerInParent="true"
         android:layout_marginTop="628dp"
-
         android:background="@color/blue_200"
         android:text="Signup"
-
         android:textAppearance="@style/smallText" />
 
 </RelativeLayout>
