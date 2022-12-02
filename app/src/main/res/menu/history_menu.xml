@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activeHistory"
+        android:title="Active"
+        />
+
+    <item
+        android:id="@+id/pastHistory"
+        android:title="Passed"
+        />
+
+</menu>

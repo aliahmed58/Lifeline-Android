@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.driver.DriverHomeFragment">
+
+    <TextView
+        android:id="@+id/welcomeMsgUser"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+        android:text="Welcome, "
+        android:textAppearance="@style/largeText"
+        android:textStyle="bold" />
+
+    <!-- Type text-->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="90dp"
+        android:text="Ambulance Type:"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ambulanceTypeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="90dp"
+
+        android:text="Text"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/manageRequestsBtn"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="155dp"
+        android:background="@color/blue_200"
+        android:text="Manage Ambulance Requests"
+        android:textAppearance="@style/buttonText"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

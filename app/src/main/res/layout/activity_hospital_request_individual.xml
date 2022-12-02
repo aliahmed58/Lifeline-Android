@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HospitalRequestIndividual">
+
+    <!-- Booking text-->
+    <TextView
+        android:id="@+id/textCallAmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+
+        android:gravity="top"
+        android:text="Booking in progress"
+        android:textAppearance="@style/largeText" />
+
+    <!-- Description text-->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="90dp"
+        android:text="You have accepted a bed request."
+        android:textAppearance="@style/mediumText" />
+
+    <!-- Details text -->
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="215dp"
+        android:text="Patient Details"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <!--Background -->
+    <TextView
+        android:id="@+id/Background"
+        android:layout_width="wrap_content"
+        android:layout_height="210dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/rectangle" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="250dp"
+        android:text="Name:"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="250dp"
+
+        android:text="Text"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="300dp"
+
+        android:text="Cellphone:"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/userPhoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="300dp"
+
+        android:text="Text"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px" />
+
+    <TextView
+        android:id="@+id/spec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="345dp"
+
+        android:text="Specialisation:"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/specTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="345dp"
+
+        android:text="Text"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="395dp"
+
+        android:text="Payment mode:"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="395dp"
+
+        android:text="Text"
+        android:textAppearance="@style/mediumText"
+        android:textSize="50px" />
+
+
+    <!-- Cancel button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelAmbulance"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="575dp"
+        android:background="@color/blue_200"
+        android:text="Cancel Request"
+        android:textAppearance="@style/buttonText" />
+
+    <!-- Home button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signupHomePage"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="620dp"
+        android:background="@color/blue_200"
+        android:text="Home"
+        android:textAppearance="@style/buttonText" />
+
+</RelativeLayout>
