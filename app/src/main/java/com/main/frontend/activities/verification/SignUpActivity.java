@@ -33,6 +33,7 @@ import com.main.frontend.network.VolleySingletonQueue;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -153,7 +154,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
-
     // TODO: AVOID EMPTY VALUES
     private void handleSignUpButton() {
         signupBtn.setOnClickListener(view -> {

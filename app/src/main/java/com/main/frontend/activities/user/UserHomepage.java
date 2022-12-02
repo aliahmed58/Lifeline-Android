@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.main.frontend.R;
+import com.main.frontend.activities.common.HistoryFragment;
 import com.main.frontend.activities.common.ProfileFragment;
 
 public class UserHomepage extends AppCompatActivity {
@@ -15,7 +16,7 @@ public class UserHomepage extends AppCompatActivity {
 
     UserHomeFragment userFragment = new UserHomeFragment();
     ProfileFragment profileFragment = new ProfileFragment();
-    UserHistoryFragment historyFragment = new UserHistoryFragment();
+    HistoryFragment historyFragment = new HistoryFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

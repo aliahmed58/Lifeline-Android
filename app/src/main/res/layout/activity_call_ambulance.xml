@@ -15,12 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
-        android:layout_marginLeft="55dp"
+        android:textColor="@color/blue_200"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="45dp"
-
         android:gravity="top"
-        android:text="Call an ambulance"
+        android:text="Book an ambulance"
         android:textAppearance="@style/largeText" />
 
     <!-- Location text-->
@@ -30,17 +29,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-
-        android:layout_marginLeft="55dp"
+        android:textColor="@color/blue_200"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="90dp"
         android:text="Location"
-
         android:textAppearance="@style/mediumText" />
 
     <!-- Location text box -->
     <EditText
         android:id="@+id/locationEditText"
-        android:layout_width="300dp"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
 
         android:layout_centerHorizontal="true"
@@ -50,11 +48,12 @@
 
         android:ems="10"
         android:gravity="start|top"
-        android:hint=" Type here"
+        android:hint="Enter here"
         android:inputType="textMultiLine"
         android:maxLines="5"
-
         android:minHeight="100dp"
+        android:textColor="@color/blue_200"
+        android:padding="10dp"
         android:textAppearance="@style/smallText"
         android:textColorHint="@color/blue_200" />
 
@@ -64,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="270dp"
 
         android:text="Ambulance type"
@@ -75,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="48dp"
+        android:layout_marginLeft="38dp"
         android:layout_marginTop="285dp">
 
         <RadioButton
@@ -110,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="360dp"
         android:text="Preferred specialization"
         android:textAppearance="@style/mediumText" />
@@ -121,14 +120,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="385dp"
-
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="395dp"
+        android:background="@drawable/rect"
         android:ems="10"
-        android:hint="Specialization"
+
+        android:hint="Enter here"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:padding="10dp"
         android:textAppearance="@style/smallText"
+        android:textColor="@color/blue_200"
         android:textColorHint="@color/blue_200" />
 
     <!-- Payment method text -->
@@ -137,8 +139,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="455dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="465dp"
 
         android:text="Payment method"
         android:textAppearance="@style/mediumText" />
@@ -149,8 +151,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="470dp">
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="480dp">
 
         <RadioButton
             android:id="@+id/cashPaymentSelect"
@@ -195,12 +197,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="270dp"
+        android:layout_marginLeft="260dp"
         android:layout_marginTop="600dp"
 
         android:background="@color/blue_200"
         android:text="Request"
         android:textAllCaps="false"
-        android:textAppearance="@style/buttonText"/>
+        android:textAppearance="@style/buttonText" />
 
 </RelativeLayout>

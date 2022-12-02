@@ -13,6 +13,7 @@ public class DriverHomepage extends AppCompatActivity {
     private BottomNavigationView navbar;
 
     private ProfileFragment profileFragment = new ProfileFragment();
+    private DriverHomeFragment driverHomeFragment = new DriverHomeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class DriverHomepage extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.userHome) {
-                //getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, userFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, driverHomeFragment).commit();
                 return true;
             } else if (item.getItemId() == R.id.userProfile) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.userFragmentContainer, profileFragment).commit();

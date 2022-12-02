@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.user.UserHomeFragment">
 
 
@@ -26,7 +27,7 @@
         android:layout_width="305dp"
         android:layout_height="116dp"
         android:layout_marginTop="36dp"
-        android:text="Call an ambulance"
+        android:text="Book an ambulance"
         android:textSize="15dp"
         android:textColor="@color/white"
         android:background="@color/blue_200"
@@ -42,7 +43,7 @@
         android:layout_height="116dp"
         android:layout_marginTop="36dp"
         android:background="@color/blue_200"
-        android:text="Book hospital bed"
+        android:text="Book a hospital bed"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15dp"

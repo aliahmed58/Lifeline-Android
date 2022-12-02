@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
+
         android:layout_marginLeft="45dp"
         android:layout_marginTop="45dp"
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
+
         android:layout_marginLeft="45dp"
         android:layout_marginTop="90dp"
 
@@ -43,10 +43,11 @@
         android:id="@+id/nameInputText"
         android:layout_width="300dp"
         android:layout_height="41dp"
-        android:padding="10dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
 
+        android:padding="10dp"
         android:background="@drawable/rect"
         android:ems="10"
         android:hint=" Name"
@@ -59,11 +60,12 @@
         android:id="@+id/cellphoneInputText"
         android:layout_width="300dp"
         android:layout_height="41dp"
-        android:padding="10dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="450dp"
         android:background="@drawable/rect"
 
+        android:padding="10dp"
         android:ems="10"
         android:hint=" Cellphone"
         android:inputType="phone"
@@ -128,8 +130,10 @@
         android:id="@+id/signUpButton"
         android:layout_width="300dp"
         android:layout_height="40dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="600dp"
+
         android:text="Send OTP"
         android:background="@color/blue_200"
         android:textAppearance="@style/buttonText" />

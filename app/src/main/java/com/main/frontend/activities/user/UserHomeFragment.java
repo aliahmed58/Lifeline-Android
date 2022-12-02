@@ -58,6 +58,7 @@ public class UserHomeFragment extends Fragment {
     private void ambulanceBtnListener() {
         callAmbulanceBtn.setOnClickListener(view ->{
             Intent i = new Intent(view.getContext(), CallAmbulance.class);
+            i.putExtra("user", user);
             startActivity(i);
         });
     }

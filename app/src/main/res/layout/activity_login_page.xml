@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
+
         android:layout_marginLeft="45dp"
         android:layout_marginTop="45dp"
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textStyle="bold"
+
         android:layout_marginLeft="45dp"
         android:layout_marginTop="90dp"
 
@@ -41,14 +41,16 @@
         android:id="@+id/loginPhoneText"
         android:layout_width="300dp"
         android:layout_height="41dp"
-        android:padding="10dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:autofillHints="phone"
+
         android:background="@drawable/rect"
         android:ems="10"
-        android:hint=" Cellphone"
+        android:hint="Enter Cellphone number"
         android:inputType="phone"
+        android:padding="10dp"
         android:textColor="@color/blue_200"
         android:textColorHint="@color/blue_200" />
 
@@ -61,15 +63,16 @@
         android:layout_marginTop="300dp"
         android:background="@color/blue_200"
         android:text="Send OTP"
-        android:textAppearance="@style/buttonText" />
+        android:textAppearance="@style/buttonText"
+        />
 
     <!-- New user text -->
     <TextView
         android:id="@+id/newUserTextView8"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="55dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="570dp"
         android:text="New user?"
         android:textAppearance="@style/smallText" />

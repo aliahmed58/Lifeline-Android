@@ -1,9 +1,9 @@
 package com.main.frontend.entity;
 
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
 
     private String name;
     private String phone;

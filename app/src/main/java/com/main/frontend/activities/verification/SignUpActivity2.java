@@ -60,9 +60,6 @@ public class SignUpActivity2 extends AppCompatActivity {
     private PhoneAuthenticator phoneAuthenticator;
     private FirebaseUser user;
 
-    // Volley request queue
-    private RequestQueue reqQueue;
-
     // ui elements
     private Button signUp;
     private EditText otpInput;
@@ -83,7 +80,6 @@ public class SignUpActivity2 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        reqQueue = VolleySingletonQueue.getInstance(this.getApplicationContext()).getRequestQueue();
 
         signUp = (Button) findViewById(R.id.proceedSignUp);
         otpInput = (EditText) findViewById(R.id.otpInput);

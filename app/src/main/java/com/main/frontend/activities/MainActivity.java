@@ -34,18 +34,18 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        Button signUpIntentButton = (Button) findViewById(R.id.homeSignupBtn);
-        Button loginIntentButton = (Button) findViewById(R.id.homeLoginBtn);
+        Button signUpIntentButton = (Button) findViewById(R.id.signupHomePage);
+        Button loginIntentButton = (Button) findViewById(R.id.loginHomePage);
 
         updateUI();
 
         signUpIntentButton.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, LoginPage.class);
+            Intent i = new Intent(MainActivity.this, SignUpActivity.class);
             startActivity(i);
         });
 
         loginIntentButton.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, SignUpActivity.class);
+            Intent i = new Intent(MainActivity.this, LoginPage.class);
             startActivity(i);
         });
     }
