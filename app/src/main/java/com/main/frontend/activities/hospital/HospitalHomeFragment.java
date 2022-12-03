@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.main.frontend.R;
 import com.main.frontend.activities.MainActivity;
+import com.main.frontend.activities.driver.AmbulanceRequests;
 import com.main.frontend.entity.Ambulance;
 import com.main.frontend.entity.Driver;
 import com.main.frontend.entity.User;
@@ -26,9 +28,6 @@ import java.util.Objects;
 public class HospitalHomeFragment extends Fragment {
 
     private FirebaseFirestore db;
-
-    private Driver driver;
-    private Ambulance ambulance;
 
     private TextView welcomeMsgUser;
     private Button manageRequestBtn;
@@ -44,18 +43,23 @@ public class HospitalHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_driver_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_hospital_home, container, false);
 
         db = FirebaseFirestore.getInstance();
         welcomeMsgUser = view.findViewById(R.id.welcomeMsgUser);
         manageRequestBtn = view.findViewById(R.id.manageRequestsBtn);
 
         checkAuth(view);
+        setManageRequestBtn(view);
         return view;
     }
 
-    private void setManageRequestBtn() {
-
+    private void setManageRequestBtn(View parentView) {
+        manageRequestBtn.setOnClickListener(view -> {
+                Intent i = new Intent(parentView.getContext(), HospitalRequests.class);
+                i.putExtra("user", user);
+                startActivity(i);
+        });
     }
 
     private void checkAuth(View view) {

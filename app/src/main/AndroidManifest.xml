@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Frontend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.user.BedReqAccepted"
+            android:exported="false" />
+        <activity
+            android:name=".activities.user.RequestHospitalBed"
+            android:exported="false" />
+        <activity
+            android:name=".activities.hospital.HospitalRequests"
+            android:exported="false" />
+        <activity
             android:name=".activities.driver.DriverReqCancel"
             android:exported="false" />
         <activity

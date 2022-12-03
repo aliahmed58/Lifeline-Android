@@ -8,6 +8,7 @@
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/font/raleway_thin.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_add_ambulance.xml" value="0.2" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_ambulance_requests.xml" value="0.275" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_bed_req_accepted.xml" value="0.1484375" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_call_ambulance.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_call_ambulance2.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_call_ambulance3.xml" value="0.275" />
@@ -20,13 +21,16 @@
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_hospital_cancel.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_hospital_homepage.xml" value="0.1265625" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_hospital_request_individual.xml" value="0.275" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_hospital_requests.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_login_page.xml" value="0.264" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_login_page2.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_request_hospital_bed.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_sign_up.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_sign_up2.xml" value="0.264" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/activity_user_homepage.xml" value="0.2" />
+        <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/bed_requests_layout.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/bottom_navbar.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/content_driver_request_individual.xml" value="0.275" />
         <entry key="..\:/Users/alili/Desktop/SE/LifeLine/Frontend/app/src/main/res/layout/driver_requests_adapter.xml" value="0.275" />

@@ -51,6 +51,7 @@ public class UserHomeFragment extends Fragment {
 
         checkAuth(view);
         ambulanceBtnListener();
+        hospitalBedListener();
 
         return view;
     }
@@ -64,7 +65,11 @@ public class UserHomeFragment extends Fragment {
     }
 
     private void hospitalBedListener() {
-
+        bookHospitalBedBtn.setOnClickListener(view -> {
+            Intent i = new Intent(view.getContext(), RequestHospitalBed.class);
+            i.putExtra("user", user);
+            startActivity(i);
+        });
     }
 
     private void checkAuth(View view) {

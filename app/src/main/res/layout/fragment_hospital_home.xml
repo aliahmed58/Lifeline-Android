@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/callAmbulanceBtn"
+        android:id="@+id/manageRequestsBtn"
         android:layout_width="300dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".activities.user.RequestHospitalBed">
+
+    <!-- Cancellation text-->
+    <TextView
+        android:id="@+id/textCancelBedBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+
+        android:gravity="top"
+        android:text="Book a bed"
+        android:textAppearance="@style/largeText" />
+
+    <!-- Description text-->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="90dp"
+        android:text="Check for bed availability."
+        android:textAppearance="@style/mediumText" />
+
+    <!-- BoxDesc text-->
+    <TextView
+        android:id="@+id/boxDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="160dp"
+        android:text="State specializaion:"
+
+        android:textAppearance="@style/mediumText"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/typeSpec"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="190dp"
+
+        android:background="@drawable/rect"
+        android:textColor="@color/blue_200"
+        android:ems="10"
+        android:hint="Enter here"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textAppearance="@style/smallText"
+        android:textColorHint="@color/blue_200" />
+
+    <TextView
+        android:id="@+id/nameDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="260dp"
+        android:text="Patient Name:"
+
+        android:textAppearance="@style/mediumText"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/typeName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="290dp"
+
+        android:background="@drawable/rect"
+        android:textColor="@color/blue_200"
+        android:ems="10"
+        android:hint="Enter here"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textAppearance="@style/smallText"
+        android:textColorHint="@color/blue_200" />
+
+    <TextView
+        android:id="@+id/ageDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="360dp"
+        android:text="Patient Age:"
+
+        android:textAppearance="@style/mediumText"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/typeAge"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="390dp"
+
+        android:background="@drawable/rect"
+        android:textColor="@color/blue_200"
+        android:ems="10"
+        android:hint="Enter here"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textAppearance="@style/smallText"
+        android:textColorHint="@color/blue_200" />
+
+    <TextView
+        android:id="@+id/cellDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="460dp"
+        android:text="Alternate Cellphone:"
+
+        android:textAppearance="@style/mediumText"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/typeCell"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="490dp"
+
+        android:background="@drawable/rect"
+
+        android:ems="10"
+        android:hint="Enter here"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/blue_200"
+        android:textAppearance="@style/smallText"
+        android:textColorHint="@color/blue_200" />
+
+
+    <!-- Availability -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addBooking"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="620dp"
+        android:background="@color/blue_200"
+        android:text="Add booking"
+        android:textAppearance="@style/buttonText" />
+
+</RelativeLayout>
